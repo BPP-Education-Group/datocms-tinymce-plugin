@@ -23,6 +23,7 @@ import 'tinymce/plugins/lists';
 import 'tinymce/plugins/paste';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/autoresize';
+import 'tinymce/plugins/media';
 
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -174,10 +175,10 @@ export default function FieldExtension({ ctx }: Props) {
         disabled={ctx.disabled}
         init={{
           plugins:
-            'image advlist code emoticons link lists table autoresize paste',
+            'image advlist code emoticons link lists table autoresize paste media',
           toolbar:
             'undo redo | formatselect | ' +
-            'bold italic backcolor | link customimage |' +
+            'bold italic backcolor | link customimage media |' +
             'alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
             'removeformat | emoticons',
