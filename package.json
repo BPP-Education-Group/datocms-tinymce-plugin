@@ -19,18 +19,17 @@
   ],
   "dependencies": {
     "@datocms/cma-client-browser": "^3.1.1",
-    "@tinymce/tinymce-react": "^3.13.0",
+    "@tinymce/tinymce-react": "^6.3.1",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "@types/tinymce": "^4.6.4",
     "datocms-plugin-sdk": "^0.5.2",
     "datocms-react-ui": "^0.5.2",
     "lodash": "^4.18.1",
     "qs": "^6.10.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "tinymce": "^5.10.9"
+    "tinymce": "^8.10.1"
   },
   "scripts": {
     "build": "tsc -b && vite build",
