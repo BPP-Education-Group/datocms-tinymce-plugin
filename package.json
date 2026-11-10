@@ -18,7 +18,7 @@
     "dist"
   ],
   "dependencies": {
-    "@datocms/cma-client-browser": "^3.1.1",
+    "@datocms/cma-client-browser": "^6.1.0",
     "@tinymce/tinymce-react": "^6.3.1",
     "@types/qs": "^6.15.1",
     "@types/react": "^17.0.93",
