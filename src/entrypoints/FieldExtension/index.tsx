@@ -20,7 +20,6 @@ import 'tinymce/plugins/emoticons';
 import 'tinymce/plugins/emoticons/js/emojis';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/lists';
-import 'tinymce/plugins/paste';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/autoresize';
 import 'tinymce/plugins/media';
@@ -173,11 +172,11 @@ export default function FieldExtension({ ctx }: Props) {
     <Canvas ctx={ctx}>
       <ReactEditor
         disabled={ctx.disabled}
+        licenseKey="gpl"
         init={{
-          plugins:
-            'image advlist code emoticons link lists table autoresize paste media',
+          plugins: 'image advlist code emoticons link lists table autoresize media',
           toolbar:
-            'undo redo | formatselect | ' +
+            'undo redo | blocks | ' +
             'bold italic backcolor | link customimage media |' +
             'alignleft aligncenter ' +
             'alignright alignjustify | bullist numlist outdent indent | ' +
@@ -187,7 +186,7 @@ export default function FieldExtension({ ctx }: Props) {
           setup: initialize,
           autoresize_bottom_margin: 10,
           paste_data_images: true,
-          async images_upload_handler(blobInfo, success, failure, progress) {
+          async images_upload_handler(blobInfo, progress) {
             try {
               const client = buildClient({
                 // biome-ignore lint/style/noNonNullAssertion: We're sure we have currentUserAccessToken
@@ -200,14 +199,14 @@ export default function FieldExtension({ ctx }: Props) {
                 filename: blobInfo.filename(),
                 onProgress(info) {
                   if (info.type === 'UPLOADING_FILE') {
-                    progress?.(Math.round(info.payload.progress * 0.99));
+                    progress(Math.round(info.payload.progress * 0.99));
                   }
                 },
               });
 
-              success?.(upload.url);
+              return upload.url;
             } catch (_e) {
-              failure('Could not upload image');
+              throw new Error('Could not upload image');
             }
           },
         }}
